@@ -10,4 +10,5 @@ Disallow: /api/
 
 # Indica o caminho oficial do seu mapa do site para indexação rápida
 
-Sitemap: gm-tech-iphones.netlify.app
+Sitemap: https://gm-tech-iphones.netlify.app/
+
