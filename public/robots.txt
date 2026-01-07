@@ -9,4 +9,5 @@ Disallow: /admin/
 Disallow: /api/
 
 # Indica o caminho oficial do seu mapa do site para indexação rápida
-Sitemap: https://gmtechcaratinga.com.br/sitemap-index.xml
+
+Sitemap: gm-tech-iphones.netlify.app
