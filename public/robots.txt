@@ -1,0 +1,12 @@
+# https://www.robotstxt.org/robotstxt.html
+
+# Permite que todos os buscadores (Google, Bing, etc) indexem o site
+User-agent: *
+Allow: /
+
+# Bloqueia pastas que não precisam aparecer no Google (se existirem no futuro)
+Disallow: /admin/
+Disallow: /api/
+
+# Indica o caminho oficial do seu mapa do site para indexação rápida
+Sitemap: https://gmtechcaratinga.com.br/sitemap-index.xml

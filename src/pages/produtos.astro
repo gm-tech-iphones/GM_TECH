@@ -1,0 +1,98 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import ProductCard from '../components/ProductCard.astro';
+import { products } from '../data/products';
+
+const seoData = {
+  title: "Catálogo de iPhones e Apple Products | GM TECH Caratinga",
+  description: "Confira preços de iPhones novos e seminovos em Caratinga. iPhone 13 ao 16 Pro Max com os melhores valores e garantia garantida."
+};
+
+// Gerar schema dinâmico para a lista de produtos (Google adora isso para o "Merchant Center")
+const itemListSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  "itemListElement": products.map((p, index) => ({
+    "@type": "ListItem",
+    "position": index + 1,
+    "name": p.name,
+    "url": `https://gmtechcaratinga.com.br/produtos` // No futuro você pode ter páginas individuais
+  }))
+});
+---
+
+<MainLayout title={seoData.title} description={seoData.description}>
+  <script type="application/ld+json" set:html={itemListSchema} />
+
+  <section class="pt-32 pb-10 px-4 text-center bg-black">
+    <header class="max-w-3xl mx-auto">
+      <h1 class="text-4xl md:text-5xl font-bold mb-4 text-white">
+        Nossos <span class="text-[#FFB800]">Produtos</span>
+      </h1>
+      <p class="text-gray-400 mb-8 leading-relaxed">
+        Explore a linha completa Apple disponível em Caratinga. 
+        Encontre o iPhone ideal com garantia GM TECH e suporte especializado.
+      </p>
+    </header>
+
+    <div class="max-w-xl mx-auto relative group">
+      <label for="search-input" class="sr-only">Buscar produtos Apple</label>
+      <input 
+        type="text" 
+        id="search-input"
+        placeholder="O que você procura? (ex: iPhone 15 Pro)" 
+        class="w-full bg-[#111] border border-white/10 rounded-full py-4 px-6 text-white placeholder-gray-500 focus:outline-none focus:border-[#FFB800] focus:ring-1 focus:ring-[#FFB800] transition-all"
+      />
+      <span class="absolute right-6 top-4 text-gray-500 group-focus-within:text-[#FFB800] transition-colors" aria-hidden="true">🔍</span>
+    </div>
+  </section>
+
+  <section class="max-w-7xl mx-auto px-4 pb-20">
+    <div id="no-results" class="hidden text-center py-20 bg-[#111] rounded-3xl border border-white/5">
+      <p class="text-2xl text-gray-500">Nenhum iPhone ou acessório encontrado com esse nome 😕</p>
+      <p class="text-sm text-gray-600 mt-2">Tente buscar por termos mais simples, como "iPhone".</p>
+    </div>
+
+    <div id="products-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      {products.map((product) => (
+        <article class="product-card-container">
+          <ProductCard 
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            baseImage={product.baseImage}
+            colors={product.colors}
+          />
+        </article>
+      ))}
+    </div>
+  </section>
+</MainLayout>
+
+<script>
+  const searchInput = document.getElementById('search-input');
+  // Ajuste seletor para pegar o elemento correto renderizado pelo seu Componente ProductCard
+  const cards = document.querySelectorAll('.product-card-container');
+  const noResults = document.getElementById('no-results');
+
+  searchInput?.addEventListener('input', (e) => {
+    const term = (e.target as HTMLInputElement).value.toLowerCase();
+    let hasResults = false;
+
+    cards.forEach(card => {
+      // O ProductCard deve ter um data-name para a busca funcionar bem
+      const name = card.textContent?.toLowerCase() || "";
+      
+      if (name.includes(term)) {
+        (card as HTMLElement).style.display = 'block';
+        hasResults = true;
+      } else {
+        (card as HTMLElement).style.display = 'none';
+      }
+    });
+
+    if (noResults) {
+        noResults.style.display = hasResults ? 'none' : 'block';
+    }
+  });
+</script>

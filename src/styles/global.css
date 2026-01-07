@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Configuração de Cores e Variáveis (Sintaxe compatível) */
+:root {
+  --color-gm-yellow: #F2C94C;
+  --color-gm-black: #0D0D0D;
+  --color-gm-gray: #1A1A1A;
+}
+
+@layer base {
+  body {
+    background-color: var(--color-gm-black);
+    color: white;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-family: system-ui, -apple-system, sans-serif;
+  }
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Utilitários customizados se necessário */
+.text-gm-yellow { color: var(--color-gm-yellow); }
+.bg-gm-yellow { background-color: var(--color-gm-yellow); }
+.bg-gm-black { background-color: var(--color-gm-black); }
+.bg-gm-gray { background-color: var(--color-gm-gray); }

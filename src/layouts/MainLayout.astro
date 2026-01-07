@@ -1,0 +1,61 @@
+---
+import '../styles/global.css';
+import Navbar from '../components/Navbar.astro';
+import Footer from '../components/Footer.astro';
+
+const { 
+  title, 
+  description = "GM TECH - Sua vitrine premium Apple. iPhones, MacBooks e acessórios com o melhor preço e garantia.",
+  image = "public/logo.jpg" // Imagem que aparece ao compartilhar no WhatsApp/Social
+} = Astro.props;
+
+// Gera a URL canônica automaticamente para evitar problemas de SEO
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "gm-tech-iphones.netlify.app");
+---
+
+<html lang="pt-br" class="scroll-smooth">
+	<head>
+		<meta charset="utf-8" />
+        <link rel="icon" type="image/x-jpg" href="/logo.jpg" />
+		<meta name="viewport" content="width=device-width" />
+		<meta name="generator" content={Astro.generator} />
+		
+		<title>{title} | GM TECH</title>
+		<meta name="title" content={`${title} | GM TECH`} />
+		<meta name="description" content={description} />
+		<link rel="canonical" href={canonicalURL} />
+
+		<meta property="og:type" content="website" />
+		<meta property="og:url" content={canonicalURL} />
+		<meta property="og:title" content={`${title} | GM TECH`} />
+		<meta property="og:description" content={description} />
+		<meta property="og:image" content={new URL(image, canonicalURL)} />
+
+		<meta property="twitter:card" content="summary_large_image" />
+		<meta property="twitter:url" content={canonicalURL} />
+		<meta property="twitter:title" content={`${title} | GM TECH`} />
+		<meta property="twitter:description" content={description} />
+		<meta property="twitter:image" content={new URL(image, canonicalURL)} />
+
+		<meta name="robots" content="index, follow" />
+		
+		<slot name="head" />
+	</head>
+	<body class="bg-gm-black flex flex-col min-h-screen text-white antialiased">
+		<Navbar /> 
+		
+		<main class="flex-grow">
+			<slot /> 
+		</main>
+
+		<Footer />
+	</body>
+</html>
+
+<style is:global>
+	/* Melhoria na renderização de fontes para dispositivos Apple */
+	html {
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+</style>

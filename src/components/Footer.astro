@@ -1,0 +1,71 @@
+---
+// src/components/Footer.astro
+---
+
+<footer class="bg-gm-black text-white py-16 px-8 border-t border-white/5 relative">
+  <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
+    
+    <div class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-1 h-8 bg-gm-yellow"></div>
+        <h2 class="text-2xl font-bold tracking-tighter">GM TECH</h2>
+      </div>
+      <p class="text-gray-400 max-w-xs leading-relaxed">
+        Sua referência em produtos Apple. Garantia, procedência e atendimento especializado.
+      </p>
+      <a 
+        href="https://instagram.com/gmtech.iphones" 
+        target="_blank"
+        class="inline-flex items-center gap-2 bg-gradient-to-r from-[#f09433] via-[#dc2743] to-[#bc1888] px-6 py-3 rounded-full font-bold text-sm hover:scale-105 transition-transform"
+      >
+        <span class="text-lg">📸</span> Siga @gmtech.iphones
+      </a>
+    </div>
+
+    <div class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-1 h-8 bg-gm-yellow"></div>
+        <h2 class="text-xl font-bold uppercase tracking-widest">Navegação</h2>
+      </div>
+      <ul class="space-y-4">
+        <li><a href="/" class="text-gray-400 hover:text-gm-yellow flex items-center gap-2 group"><span class="text-gm-yellow group-hover:translate-x-1 transition-transform">›</span> Início</a></li>
+        <li><a href="/produtos" class="text-gray-400 hover:text-gm-yellow flex items-center gap-2 group"><span class="text-gm-yellow group-hover:translate-x-1 transition-transform">›</span> Ver iPhones</a></li>
+        <li><a href="/contato" class="text-gray-400 hover:text-gm-yellow flex items-center gap-2 group"><span class="text-gm-yellow group-hover:translate-x-1 transition-transform">›</span> Localização</a></li>
+      </ul>
+    </div>
+
+    <div class="space-y-6">
+      <div class="flex items-center gap-3">
+        <div class="w-1 h-8 bg-gm-yellow"></div>
+        <h2 class="text-xl font-bold uppercase tracking-widest">Onde Estamos</h2>
+      </div>
+      <div class="space-y-4">
+        <div class="flex items-start gap-3">
+          <span class="text-gm-yellow text-xl">📞</span>
+          <div>
+            <p class="font-bold text-white text-lg leading-none">(11) 94158-3429</p>
+            <p class="text-xs text-gray-500 mt-1">Atendimento das 09h às 19h</p>
+          </div>
+        </div>
+        <div class="flex items-start gap-3">
+          <span class="text-gm-yellow text-xl">📍</span>
+          <div>
+            <p class="text-gray-300">R. Passo Fundo, 1669</p>
+            <p class="text-gray-300">Jardim Coqueiro</p>
+            <p class="text-gray-300">São Paulo - SP</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <a 
+    href="https://wa.me/5511941583429" 
+    class="fixed bottom-6 right-6 bg-[#25D366] p-4 rounded-full shadow-lg hover:scale-110 transition-transform z-50 animate-bounce"
+    target="_blank"
+    aria-label="Chamar no WhatsApp"
+  >
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" class="w-8 h-8" alt="WhatsApp" />
+  </a>
+</footer>

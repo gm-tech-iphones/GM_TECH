@@ -1,0 +1,31 @@
+---
+interface Props {
+  title: string;
+  price: string;
+  image: string;
+  isMain?: boolean;
+}
+
+const { title, price, image, isMain = false } = Astro.props;
+---
+
+<div class={`relative group ${isMain ? 'col-span-full' : 'col-span-1'}`}>
+  <div class="absolute -inset-0.5 bg-gm-yellow/20 rounded-3xl blur opacity-75 group-hover:opacity-100 transition duration-500"></div>
+  
+  <div class="relative bg-gm-gray border border-white/10 rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between overflow-hidden">
+    <div class="z-10 text-center md:text-left">
+      <span class="text-gm-yellow font-bold text-sm tracking-widest uppercase">DESTAQUE 2026</span>
+      <h2 class={`${isMain ? 'text-5xl' : 'text-3xl'} font-bold mt-2 mb-4`}>{title}</h2>
+      <p class="text-2xl text-gray-400 mb-6">A partir de <span class="text-white font-bold">{price}</span></p>
+      <button class="bg-white text-black px-8 py-3 rounded-full font-bold hover:bg-gm-yellow transition-colors">
+        Reservar Agora
+      </button>
+    </div>
+    
+    <img 
+      src={image} 
+      alt={title} 
+      class={`${isMain ? 'w-80' : 'w-48'} h-auto object-contain drop-shadow-[0_20px_50px_rgba(242,201,76,0.3)] group-hover:scale-110 transition-transform duration-500`}
+    />
+  </div>
+</div>

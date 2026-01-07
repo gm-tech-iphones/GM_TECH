@@ -1,0 +1,27 @@
+---
+// src/components/Navbar.astro
+---
+
+<nav class="fixed top-0 left-0 right-0 z-50 flex justify-center p-4">
+  <div class="w-full max-w-6xl bg-gm-black/60 backdrop-blur-md border border-white/10 rounded-2xl px-6 py-3 flex justify-between items-center shadow-2xl">
+    
+    <a href="/" class="flex items-center gap-2 group">
+      <img src="/logo.jpg" alt="GM TECH Logo" class="h-10 w-auto rounded-lg group-hover:scale-105 transition-transform" />
+      <span class="font-bold text-xl tracking-tighter text-white">GM <span class="text-gm-yellow">TECH</span></span>
+    </a>
+
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium text-gray-300">
+      <a href="/" class="hover:text-gm-yellow transition-colors">Início</a>
+      <a href="/produtos" class="hover:text-gm-yellow transition-colors">Produtos</a>
+      <a href="/contato" class="hover:text-gm-yellow transition-colors">Contato</a>
+    </div>
+
+    <a 
+      href="https://wa.me/5511941583429" 
+      target="_blank"
+      class="bg-gm-yellow text-black px-5 py-2 rounded-xl font-bold text-sm hover:scale-105 transition-transform active:scale-95 shadow-[0_0_15px_rgba(242,201,76,0.3)]"
+    >
+      WhatsApp
+    </a>
+  </div>
+</nav>

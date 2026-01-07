@@ -1,0 +1,147 @@
+---
+import MainLayout from '../layouts/MainLayout.astro';
+import HighlightCard from '../components/HighlightCard.astro';
+
+const seoData = {
+  title: "GM TECH | Produtos Apple",
+  description: "A melhor vitrine Apple de São Paulo. iPhones novos e seminovos, MacBooks e PS5 com garantia e entrega rápida."
+};
+
+const mainProduct = {
+  title: "iPhone 17 Pro Max",
+  price: "R$ 9.790,00",
+  image: "https://files.tecnoblog.net/wp-content/uploads/2025/09/iphone-17-pro-max-laranja-cosmico.png",
+  description: "O futuro chegou. Experimente o novo Laranja Cósmico."
+};
+
+const smallHighlights = [
+  { title: "iPhone 16 Pro Max", price: "R$ 5.890,00", image: "https://files.tecnoblog.net/wp-content/uploads/2025/01/iphone-16-pro-max-titanio-deserto.png" },
+  { title: "iPhone 15 Pro Max 256GB", price: "R$ 5.390,00", image: "https://files.tecnoblog.net/wp-content/uploads/2025/01/iphone-15-pro-titanio-azul.png" },
+  { title: "iPhone 14 Pro Max 256GB", price: "R$ 4.290,00", image: "https://files.tecnoblog.net/wp-content/uploads/2025/01/iphone-14-pro-max-dourado-.png" },
+];
+
+const benefits = [
+  { icon: "🛡️", title: "Garantia Total", desc: "Aparelhos revisados com garantia GM TECH." },
+  { icon: "⚡", title: "Entrega Express", desc: "Entrega em qualquer local." },
+  { icon: "💰", title: "Melhor Preço", desc: "Cobrimos ofertas comprovadas de seminovos." }
+];
+
+const orgSchema = JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "ElectronicsStore",
+  "name": "GM TECH",
+  "url": "gm-tech-iphones.netlify.app", // Mantido conforme config anterior
+  "description": seoData.description,
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "R. Passo Fundo, 1669",
+    "addressLocality": "São Paulo",
+    "addressRegion": "SP",
+    "addressCountry": "BR"
+  }
+});
+---
+
+<MainLayout title={seoData.title} description={seoData.description}>
+  <script type="application/ld+json" set:html={orgSchema} />
+
+  <section class="min-h-[90vh] flex flex-col justify-center items-center px-4 text-center bg-radial-gradient">
+    <div class="animate-fade-in">
+       <span class="bg-gm-yellow/10 text-gm-yellow text-sm font-bold px-4 py-1.5 rounded-full uppercase tracking-widest mb-6 inline-block">
+        Tecnologia Premium
+      </span>
+      <h1 class="text-6xl md:text-8xl font-bold tracking-tighter mb-4 leading-none text-white">
+        GM <span class="text-gm-yellow">TECH</span>
+      </h1>
+      <p class="text-gray-400 text-lg md:text-xl max-w-2xl mb-10 mx-auto leading-relaxed">
+        Sua vitrine premium de tecnologia Apple e gadgets de última geração 
+        Alta performance, garantia e o melhor preço do mercado.
+      </p>
+      
+      <nav class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a href="#destaques" class="bg-white text-black px-10 py-4 rounded-xl font-bold hover:bg-gm-yellow transition-all transform hover:scale-105">
+          Ver Lançamentos
+        </a>
+        <a href="/produtos" class="border border-white/20 px-10 py-4 rounded-xl font-bold hover:bg-white/10 transition-all text-white">
+          Catálogo Completo
+        </a>
+      </nav>
+    </div>
+  </section>
+
+  <section id="destaques" class="max-w-7xl mx-auto px-4 py-24">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
+      <header>
+        <h2 class="text-3xl md:text-4xl font-bold text-white">Destaques da <span class="text-gm-yellow">Semana</span></h2>
+        <p class="text-gray-500 mt-2">Os produtos Apple mais desejados.</p>
+      </header>
+      <a href="/produtos" class="text-gm-yellow hover:underline font-medium">Ver todos os produtos →</a>
+    </div>
+
+    <div class="flex flex-col gap-6 text-white">
+      <article class="w-full">
+        <HighlightCard 
+          title={mainProduct.title} 
+          price={mainProduct.price} 
+          image={mainProduct.image} 
+          isMain={true} 
+        />
+      </article>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {smallHighlights.map((product) => (
+          <article>
+            <HighlightCard 
+              title={product.title} 
+              price={product.price} 
+              image={product.image} 
+              isMain={false}
+            />
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-[#111] border-y border-white/5 py-16">
+    <div class="max-w-7xl mx-auto px-4">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-12 text-center">
+        {benefits.map(benefit => (
+          <div class="flex flex-col items-center">
+            <span class="text-4xl mb-4" aria-hidden="true">{benefit.icon}</span>
+            <h3 class="text-xl font-bold mb-2 text-white">{benefit.title}</h3>
+            <p class="text-gray-500 text-sm max-w-[250px]">{benefit.desc}</p>
+          </div>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-24 text-center px-4">
+    <div class="max-w-3xl mx-auto bg-gradient-to-b from-[#111] to-black p-12 rounded-[2rem] border border-[#FFB800]/20 shadow-2xl">
+      <h2 class="text-3xl md:text-5xl font-bold mb-6 text-white">Não encontrou o que procurava?</h2>
+      <p class="text-gray-400 mb-8">Trabalhamos com encomendas personalizadas para toda a linha Apple.</p>
+      <a 
+        href="https://wa.me/5511941583429" 
+        target="_blank" 
+        rel="noopener noreferrer"
+        class="inline-flex items-center gap-2 bg-[#25D366] text-white px-8 py-4 rounded-full font-bold hover:brightness-110 transition-all transform hover:scale-105"
+      >
+        <span>Falar com Consultor no WhatsApp</span>
+      </a>
+    </div>
+  </section>
+</MainLayout>
+
+<style>
+  .animate-fade-in {
+    animation: fadeIn 0.8s ease-out forwards;
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  .bg-radial-gradient {
+    background: radial-gradient(circle at 50% 50%, rgba(255, 184, 0, 0.08) 0%, transparent 70%);
+  }
+</style>

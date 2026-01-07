@@ -1,0 +1,83 @@
+---
+// src/components/ProductCard.astro
+const { id, name, price, baseImage, colors } = Astro.props;
+---
+
+<div class="product-card group relative bg-gm-gray border border-white/5 rounded-3xl p-6 transition-all hover:-translate-y-2 hover:border-gm-yellow/30 flex flex-col" data-name={name.toLowerCase()}>
+  
+  <div class="absolute top-4 left-4 z-10 bg-gm-yellow/10 text-gm-yellow text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wider">
+    Disponível
+  </div>
+
+  <div class="relative w-full h-64 flex items-center justify-center mb-6 overflow-hidden rounded-2xl bg-white/5">
+    <img 
+      id={`img-${id}`}
+      src={baseImage} 
+      alt={name} 
+      class="max-h-56 w-auto object-contain transition-transform duration-500 group-hover:scale-110"
+    />
+  </div>
+
+  <div class="text-center mt-auto">
+    <h3 class="text-xl font-bold text-white mb-2">{name}</h3>
+    <p class="text-2xl text-gm-yellow font-bold mb-6">{price}</p>
+
+    <div class="flex justify-center gap-3 mb-6 flex-wrap">
+      {colors.map((color) => (
+        <button
+          class="color-btn w-6 h-6 rounded-full border border-white/20 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gm-gray focus:ring-gm-yellow transition-all hover:scale-125 cursor-pointer"
+          style={`background-color: ${color.hex}`}
+          data-image={color.image}
+          data-color-name={color.name}
+          data-target-id={id}
+          title={color.name}
+          aria-label={`Selecionar cor ${color.name}`}
+        ></button>
+      ))}
+    </div>
+
+    <button 
+      onclick={`openWhatsApp('${name}', '${price}', '${id}')`}
+      class="w-full bg-white text-black font-bold py-3 rounded-xl hover:bg-gm-yellow transition-colors flex items-center justify-center gap-2 cursor-pointer"
+    >
+      <span>Comprar Agora</span>
+      <svg 
+        xmlns="http://www.w3.org/2000/svg" 
+        width="20" 
+        height="20" 
+        viewBox="0 0 20 20" 
+        fill="currentColor" 
+        class="w-5 h-5"
+        style="width: 20px; height: 20px; min-width: 20px;"
+      >
+        <path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd" />
+      </svg>
+    </button>
+  </div>
+  
+  <input type="hidden" id={`selected-color-${id}`} value={colors[0].name} />
+</div>
+
+<script is:inline>
+  // Lógica de troca de imagem e WhatsApp
+  document.addEventListener('click', (e) => {
+    if (e.target.classList.contains('color-btn')) {
+      const targetId = e.target.getAttribute('data-target-id');
+      const newImage = e.target.getAttribute('data-image');
+      const colorName = e.target.getAttribute('data-color-name');
+      
+      const imgElement = document.getElementById(`img-${targetId}`);
+      if (imgElement && newImage) imgElement.src = newImage;
+
+      const colorInput = document.getElementById(`selected-color-${targetId}`);
+      if (colorInput) colorInput.value = colorName;
+    }
+  });
+
+  window.openWhatsApp = function(productName, price, id) {
+    const colorInput = document.getElementById(`selected-color-${id}`);
+    const selectedColor = colorInput ? colorInput.value : 'Padrão';
+    const message = `Olá GM TECH! Tenho interesse no *${productName}* na cor *${selectedColor}* por *${price}*. Está disponível?`;
+    window.open(`https://wa.me/5511941583429?text=${encodeURIComponent(message)}`, '_blank');
+  }
+</script>
