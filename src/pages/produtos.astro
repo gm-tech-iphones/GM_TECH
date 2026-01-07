@@ -4,7 +4,7 @@ import ProductCard from '../components/ProductCard.astro';
 import { products } from '../data/products';
 
 const seoData = {
-  title: "Catálogo de iPhones e Apple Products | GM TECH Caratinga",
+  title: "Catálogo de iPhones e Apple Products | GM TECH",
   description: "Confira preços de iPhones novos e seminovos em Caratinga. iPhone 13 ao 16 Pro Max com os melhores valores e garantia garantida."
 };
 
@@ -16,7 +16,7 @@ const itemListSchema = JSON.stringify({
     "@type": "ListItem",
     "position": index + 1,
     "name": p.name,
-    "url": `https://gmtechcaratinga.com.br/produtos` // No futuro você pode ter páginas individuais
+    "url": `https://gm-tech-iphones.netlify.app/produtos/` // No futuro você pode ter páginas individuais
   }))
 });
 ---
@@ -95,4 +95,5 @@ const itemListSchema = JSON.stringify({
         noResults.style.display = hasResults ? 'none' : 'block';
     }
   });
+
 </script>
