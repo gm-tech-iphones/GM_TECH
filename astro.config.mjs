@@ -4,7 +4,7 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   // SUBSTITUA pela URL real onde o site será hospedado
-  site: 'https://gmtechcaratinga.com.br', 
+  site: 'gm-tech-iphones.netlify.app', 
   integrations: [
     tailwind(), 
     sitemap({
