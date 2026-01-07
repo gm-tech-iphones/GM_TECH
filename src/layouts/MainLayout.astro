@@ -10,7 +10,7 @@ const {
 } = Astro.props;
 
 // Gera a URL canônica automaticamente para evitar problemas de SEO
-const canonicalURL = new URL(Astro.url.pathname, Astro.site || "gm-tech-iphones.netlify.app");
+const canonicalURL = new URL(Astro.url.pathname, Astro.site || "https://gm-tech-iphones.netlify.app/");
 ---
 
 <html lang="pt-br" class="scroll-smooth">
@@ -61,3 +61,4 @@ const canonicalURL = new URL(Astro.url.pathname, Astro.site || "gm-tech-iphones.
 	}
 
 </style>
+
